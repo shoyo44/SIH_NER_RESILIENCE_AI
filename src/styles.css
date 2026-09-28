@@ -1,0 +1,141 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * NER-RESILIENCE AI design system.
+ * Dark navy command-center palette with cyan/blue accents.
+ * All colors are oklch semantic tokens — never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-safe: var(--safe);
+  --color-moderate: var(--moderate);
+  --color-highrisk: var(--highrisk);
+  --color-critical: var(--critical);
+  --color-teal: var(--teal);
+  --color-device: var(--device);
+  --color-terminal: var(--terminal);
+  --color-terminal-foreground: var(--terminal-foreground);
+  --font-display: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.004 240);
+  --foreground: oklch(0.24 0.03 255);
+  --card: oklch(1 0 0 / 0.85);
+  --card-foreground: oklch(0.24 0.03 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.03 255);
+  --primary: oklch(0.55 0.15 240);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.008 240);
+  --secondary-foreground: oklch(0.3 0.03 255);
+  --muted: oklch(0.95 0.008 240);
+  --muted-foreground: oklch(0.52 0.025 255);
+  --accent: oklch(0.6 0.13 225);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0.01 250);
+  --input: oklch(0.9 0.01 250);
+  --ring: oklch(0.55 0.15 240);
+  --surface: oklch(0.975 0.006 240);
+  --elevated: oklch(1 0 0);
+  --safe: oklch(0.62 0.17 150);
+  --moderate: oklch(0.72 0.16 80);
+  --highrisk: oklch(0.66 0.18 50);
+  --critical: oklch(0.58 0.22 27);
+  --teal: oklch(0.6 0.11 190);
+  --device: oklch(0.28 0.02 255);
+  --terminal: oklch(0.22 0.02 255);
+  --terminal-foreground: oklch(0.85 0.16 150);
+  --gradient-page: linear-gradient(135deg, oklch(0.985 0.004 250), oklch(1 0 0) 50%, oklch(0.97 0.02 230));
+  --gradient-hero: linear-gradient(135deg, oklch(1 0 0), oklch(0.97 0.02 230));
+  --gradient-accent: linear-gradient(90deg, oklch(0.6 0.13 225), oklch(0.55 0.15 240));
+  --shadow-panel: 0 1px 3px oklch(0.4 0.03 250 / 0.08);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    background-image: var(--gradient-page);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+}
+
+@utility panel {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-panel);
+  backdrop-filter: blur(12px);
+}
+
+@utility hero-surface {
+  background-image: var(--gradient-hero);
+}
+
+@utility accent-bar {
+  background-image: var(--gradient-accent);
+}
+
+/* Leaflet dark tooltips */
+.ner-tip {
+  background: oklch(1 0 0) !important;
+  color: oklch(0.24 0.03 255) !important;
+  border: 1px solid oklch(0.88 0.01 250) !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  box-shadow: none !important;
+}
+.ner-tip::before { display: none !important; }
+.ner-tiles {
+  filter: saturate(0.6);
+}
+.leaflet-container { background: oklch(0.96 0.01 240); font-family: var(--font-sans); }
+.leaflet-control-zoom a {
+  background: oklch(1 0 0) !important;
+  color: oklch(0.3 0.03 255) !important;
+  border-color: oklch(0.88 0.01 250) !important;
+}

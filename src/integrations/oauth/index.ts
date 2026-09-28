@@ -8,7 +8,7 @@ type SignInOptions = {
   extraParams?: Record<string, string>;
 };
 
-export const lovable = {
+export const oauthClient = {
   auth: {
     signInWithOAuth: async (provider: OAuthProvider, opts?: SignInOptions) => {
       const { data, error } = await supabase.auth.signInWithOAuth({

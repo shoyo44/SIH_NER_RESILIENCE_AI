@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { reportError } from "../lib/error-reporting";
 
 
 function NotFoundComponent() {
@@ -38,7 +39,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    console.error("[ErrorBoundary]", error);
+    reportError(error, { boundary: "root_error_component" });
   }, [error]);
 
   return (
